@@ -31,12 +31,12 @@
                                   </div>
                               </div>
 
-                              <div class="form-group">
+                              <!--<div class="form-group">
                                   <label class="col-sm-2 col-sm-2 control-label">Descrição</label>
                                   <div class="col-sm-10">
                                       <p class="form-control-static">{{ $aula->description }}</p>
                                   </div>
-                              </div>
+                              </div>-->
 
                               <div class="form-group">
                                   <label class="col-sm-2 col-sm-2 control-label">Apostila</label>

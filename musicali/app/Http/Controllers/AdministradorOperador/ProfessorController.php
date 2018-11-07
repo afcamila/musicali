@@ -48,6 +48,19 @@ class ProfessorController extends Controller
      */
     public function store(Request $request, User $user)
     {
+
+        request()->validate([
+            'name' => 'required|min:2|max:50',          
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',                
+        ], [
+            'name.required' => 'Digite o nome do aluno.',
+            'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
+            'name.max' => 'O nome está grande demais.',
+            'email.unique' => 'Este e-mail já foi utilizado.'
+        ]);
+
+        
         $role_professor = Role::where('name', 'professor')->first();
         $professor = User::create($request->all());
         $professor->roles()->attach($role_professor);

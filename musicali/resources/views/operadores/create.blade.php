@@ -4,6 +4,18 @@
 
       <div class="col-lg-9 main-chart ">
 
+      @if (count($errors) > 0)
+      <div class="alert alert-danger">
+
+          <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+
+    @endif
+
                   <div class="form-panel">
                       <h4 class="mb"><i class="fa fa-angle-right"></i>Novo Operador</h4>
                       <form class="form-horizontal style-form" action="/operadores" method="post">

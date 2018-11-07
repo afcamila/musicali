@@ -45,6 +45,14 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
+
+        request()->validate([
+            'curso_id' => 'required|unique:tests',                   
+        ], [
+            'curso_id.required' => 'Selecione o curso.',
+            'curso_id.unique' => 'Este curso já possui um quiz.'
+        ]);
+
         Test::create($request->all());
         return redirect('/tests');
     }

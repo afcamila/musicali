@@ -43,6 +43,24 @@ class QuestionController extends Controller
      */
     public function store(Request $request, $id)
     {
+
+        request()->validate([
+            'title' => 'required|min:2|max:100',         
+            'level' => 'required',
+            'a' => 'required|min:1|max:70',   
+            'b' => 'required|min:1|max:70', 
+            'c' => 'required|min:1|max:70', 
+            'is_correct' => 'required',                 
+        ], [
+            'title.required' => 'Digite o enunciado da questão.',
+            'level.required' => 'Selecione o nível da questão.',
+            'a.required' => 'Digite uma resposta para a Opção A.',
+            'b.required' => 'Digite uma resposta para a Opção B.',
+            'c.required' => 'Digite uma resposta para a Opção C.',
+            'is_correct.required' => 'Selecione a opção correta.'
+        ]);
+
+
         $question = Question::create($request->all());
         $question->save();
         $question->tests()->attach($id);

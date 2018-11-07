@@ -44,6 +44,17 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
+
+        request()->validate([
+            'name' => 'required|min:2|max:50',       
+            'description' => 'required|min:6',                
+        ], [
+            'name.required' => 'Digite o nome do curso.',
+            'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
+            'name.max' => 'O nome está grande demais.',
+            'description.required' => 'Descreva o curso.'
+        ]);
+
         Curso::create($request->all());
         return redirect('/cursos');
     }

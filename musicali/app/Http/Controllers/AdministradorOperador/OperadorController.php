@@ -47,6 +47,17 @@ class OperadorController extends Controller
      */
     public function store(Request $request)
     {
+
+        request()->validate([
+            'name' => 'required|min:2|max:50',          
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',                
+        ], [
+            'name.required' => 'Digite o nome do aluno.',
+            'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
+            'name.max' => 'O nome está grande demais.',
+            'email.unique' => 'Este e-mail já foi utilizado.'
+        ]);
         
         $role_operador = Role::where('name', 'operador')->first();
         $operador = User::create($request->all());

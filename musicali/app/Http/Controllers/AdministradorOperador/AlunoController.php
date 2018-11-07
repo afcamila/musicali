@@ -55,16 +55,18 @@ class AlunoController extends Controller
     public function store(Request $request, User $user)
     {
 
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'password' => 'required',
-
+        request()->validate([
+            'name' => 'required|min:2|max:50',          
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',                
+        ], [
+            'name.required' => 'Digite o nome do aluno.',
+            'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
+            'name.max' => 'O nome está grande demais.',
+            'email.unique' => 'Este e-mail já foi utilizado.'
         ]);
 
-        $error = false;
 
-        if(validatedData)
-        {
             $role_aluno = Role::where('name', 'aluno')->first();
             //$request->password = $hashed_random_password = Hash::make(str_random(6));
             //  $request->remember_token = $hashed_random_password = Hash::make(str_random(6));
@@ -72,11 +74,10 @@ class AlunoController extends Controller
             $aluno->roles()->attach($role_aluno);
 
             return redirect('/alunos')->with($error);
-        }
+        
 
-        $error = true;
 
-        return redirect('/alunos')->with($error);
+        return redirect('/alunos');
         
     }
 

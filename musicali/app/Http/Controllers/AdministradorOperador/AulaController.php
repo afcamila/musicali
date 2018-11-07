@@ -46,6 +46,19 @@ class AulaController extends Controller
      */
     public function store(Request $request, $id)
     {
+
+        request()->validate([
+            'name' => 'required|min:2|max:50',          
+            'description' => 'required|min:6',
+            'video' => 'required|min:10',                
+        ], [
+            'name.required' => 'Digite o nome da aula.',
+            'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
+            'name.max' => 'O nome está grande demais.',
+            'description.required' => 'Descreva a aula.',
+            'video.required' => 'Insira o link do vídeo.'
+        ]);
+
         $aula = Aula::create($request->except('_token'));
         $aula->save();
         $aula->modulos()->attach($id);

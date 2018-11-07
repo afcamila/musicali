@@ -47,6 +47,20 @@ class ModuloController extends Controller
      */
     public function store(Request $request, $id)
     {
+
+        request()->validate([
+            'name' => 'required|min:2|max:50',          
+            'description' => 'required|min:6',
+            'level' => 'required',                
+        ], [
+            'name.required' => 'Digite o nome do módulo.',
+            'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
+            'name.max' => 'O nome está grande demais.',
+            'description.required' => 'Descreva o módulo.',
+            'level.required' => 'Selecione o nível do módulo.'
+        ]);
+
+
         //dd($request->all());
         //$role_curso = Curso::where('id', $id)->first();
         $modulo = Modulo::create($request->all());
