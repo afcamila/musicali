@@ -32,34 +32,7 @@
 			                                  <div class="col-sm-10">
 			                                      <p class="form-control-static">{{ $curso->name }}</p>
 			                                  </div>
-			                              </div>
-
-			                              <div class="form-group">
-			                                  <label class="col-sm-2 col-sm-2 control-label">Descrição</label>
-			                                  <div class="col-sm-10">
-			                                      <p class="form-control-static">{{ $curso->description }}</p>
-			                                  </div>
-			                              </div>
-
-			                              <div class="form-group">
-			                                  <label class="col-sm-2 col-sm-2 control-label">Inscrito</label>
-			                                  <div class="col-sm-10">
-			                                      <p class="form-control-static">{{ $curso->created_at }}</p>
-			                                  </div>
-			                              </div>
-
-			                              <div class="form-group">
-			                                  <label class="col-sm-2 col-sm-2 control-label">Progresso</label>
-			                                  	<div class="col-sm-10">
-			                                      <div class="progress progress-striped">
-											  		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progresso }}" aria-valuemin="0" aria-valuemax="{{ $total }}" style="width: {{ $progresso }}%">
-											    	<span class="sr-only">{{ $progresso }}% completo</span>
-											  		</div>
-												  </div> 
-			                                	</div>
-			                               </div>
-
-			                              	                     
+			                              </div>	                              	                     
 			                              
 			                          </form>
 								</div>

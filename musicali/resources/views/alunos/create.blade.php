@@ -3,8 +3,7 @@
 @section('content')
 
       <div class="col-lg-9 main-chart ">
-            
-
+          
                   <div class="form-panel">
                       <h4 class="mb"><i class="fa fa-angle-right"></i>Novo Aluno</h4>
                       <form class="form-horizontal style-form" action="/alunos" method="post">
@@ -20,6 +19,14 @@
                             <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
                             <div class="col-sm-10">
                               <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                          </div>
+
+                          
+                          <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Senha</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" id="password" name="password">
                             </div>
                           </div>
 

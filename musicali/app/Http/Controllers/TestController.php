@@ -31,13 +31,9 @@ class TestController extends Controller
         {
             $r->where('user_id', $aluno);
         })->get();
+        
 
-        $total = 30;
-
-        $progresso = Gabarito::where('is_correct', true)->where('user_id', $aluno)->count();
-        //dd($gabarito);
-
-        return view('/quiz/index', ['cursos' => $cursos, 'progresso' => $progresso, 'total' => $total]);
+        return view('/quiz/index', ['cursos' => $cursos]);
     }
 
  
@@ -49,7 +45,17 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        $test = Test::findOrFail($id)->curso_id;        
+        $test = Test::findOrFail($id)->curso_id;   
+
+        $curso = Curso::find($id);  
+
+
+        $user = Auth::user()->id;
+
+        $total = 30;
+
+        $progresso = Gabarito::where('user_id', $user)->where('curso_id', $id)->where('is_correct', 1)->count(); 
+        //dd($progresso);
 
         //FAZER ISSO ALEATORIAMENTE
 
@@ -61,7 +67,7 @@ class TestController extends Controller
         //dd($questions);
 
 
-        return view('quiz/show', ['test' => $test, 'questions' => $questions]);
+        return view('quiz/show', ['test' => $test, 'questions' => $questions, 'curso' => $curso, 'progresso' => $progresso, 'total' => $total]);
     }
 
 
@@ -74,6 +80,8 @@ class TestController extends Controller
         $aluno = Auth::user();
         $curso = Curso::find($curso_id);
 
+        $total = 30;
+
         //dd($aluno);
 
         $progresso = Gabarito::where('user_id', $user)->where('curso_id', $curso_id)->count();
@@ -85,6 +93,7 @@ class TestController extends Controller
         $question = $id;
 
         $is_correct = Question::find($id)->is_correct;
+        //dd($is_correct);
 
         if($is_correct == $request->is_correct)
         {
@@ -107,7 +116,7 @@ class TestController extends Controller
             $gabarito->save();
         }
         
-        return redirect('/quiz');
+        return redirect()->action('TestController@gabarito', ['id' => $id]);
         
     }
 

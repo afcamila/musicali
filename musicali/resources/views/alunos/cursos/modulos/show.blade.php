@@ -45,14 +45,7 @@
                                           <button class="btn btn-theme">Download</button>
                                       </a>
                                   </div>
-                              </div>
-
-                              <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">Quiz</label>
-                                  <div class="col-sm-10">
-                                      <a class="btn btn-theme" href="/alunos/quiz/{{ $aula->id }}">Responder</a>
-                                  </div>
-                              </div>                             
+                              </div>                          
                               
                           </form>
                        

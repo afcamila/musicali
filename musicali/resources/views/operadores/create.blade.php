@@ -3,7 +3,6 @@
 @section('content')
 
       <div class="col-lg-9 main-chart ">
-            
 
                   <div class="form-panel">
                       <h4 class="mb"><i class="fa fa-angle-right"></i>Novo Operador</h4>

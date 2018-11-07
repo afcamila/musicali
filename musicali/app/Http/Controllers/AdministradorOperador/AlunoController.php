@@ -54,13 +54,30 @@ class AlunoController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $role_aluno = Role::where('name', 'aluno')->first();
-        //$request->password = $hashed_random_password = Hash::make(str_random(6));
-        //  $request->remember_token = $hashed_random_password = Hash::make(str_random(6));
-        $aluno = User::create($request->all());
-        $aluno->roles()->attach($role_aluno);
 
-        return redirect('/alunos');
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+
+        ]);
+
+        $error = false;
+
+        if(validatedData)
+        {
+            $role_aluno = Role::where('name', 'aluno')->first();
+            //$request->password = $hashed_random_password = Hash::make(str_random(6));
+            //  $request->remember_token = $hashed_random_password = Hash::make(str_random(6));
+            $aluno = User::create($request->all());
+            $aluno->roles()->attach($role_aluno);
+
+            return redirect('/alunos')->with($error);
+        }
+
+        $error = true;
+
+        return redirect('/alunos')->with($error);
+        
     }
 
     /**

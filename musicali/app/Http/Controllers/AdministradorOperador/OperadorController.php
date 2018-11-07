@@ -47,10 +47,12 @@ class OperadorController extends Controller
      */
     public function store(Request $request)
     {
+        
         $role_operador = Role::where('name', 'operador')->first();
         $operador = User::create($request->all());
         $operador->roles()->attach($role_operador);
         return redirect('/operadores');
+
     }
 
     /**

@@ -5,12 +5,23 @@
       <div class="col-lg-9 main-chart ">
 
           @if($cursos->isEmpty())
-          <div class="alert alert-warning"><b>Ops!</b> Você ainda não tem nenhum curso cadastrado.</div>
+          <div class="alert alert-warning"><b>Ops!</b> Você ainda não tem nenhum questão cadastrado.</div>
           @endif
             
             <div class="col-lg-12 ds" style="margin-bottom:10px; background-color:transparent; margin-top: -20px;">                 
-                <h3>nome</h3>  
+                <h3>noeme</h3>  
             </div>
+
+            <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Progresso</label>
+                                          <div class="col-sm-10">
+                                            <div class="progress progress-striped">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progresso }}" aria-valuemin="0" aria-valuemax="{{ $total }}" style="width: {{ $progresso }}%">
+                            <span class="sr-only">{{ $progresso }}% completo</span>
+                            </div>
+                          </div> 
+                                        </div>
+                                     </div>
 
             <div class="col-lg-12">
             @foreach($questions as $question)
