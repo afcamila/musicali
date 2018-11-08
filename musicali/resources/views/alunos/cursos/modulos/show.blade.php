@@ -41,7 +41,7 @@
                               <div class="form-group">
                                   <label class="col-sm-2 col-sm-2 control-label">Apostila</label>
                                   <div class="col-sm-10">
-                                      <a href="./abcf32x.pdf" download="How-to-download-file.pdf">
+                                      <a href="/uploads/apostilas/{{ $aula->download }}" download>
                                           <button class="btn btn-theme">Download</button>
                                       </a>
                                   </div>

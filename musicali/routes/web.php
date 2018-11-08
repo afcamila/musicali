@@ -40,10 +40,13 @@ Route::resource('/quiz', 'TestController');
 Route::get('/quiz/{id}', 'TestController@show');
 Route::post('/quiz/{id}', 'TestController@gabarito');
 
-Route::resource('/tests/premios', 'AdministradorOperador\PremioController');
-Route::get('/premios', 'AlunoController@meusPremios');
+
+Route::resource('/premios', 'AdministradorOperador\PremioController');
 Route::resource('/certificados', 'CertificadoController');
 Route::resource('/relatorios', 'RelatorioController');
+Route::get('/alunos/premios/meuspremios', 'AlunoController@meusPremios')->name('premiosalunos');
+Route::get('/alunos/premios/{id}', 'AlunoController@showPremio');
+
 
 Route::resource('/operadores', 'AdministradorOperador\OperadorController');
 

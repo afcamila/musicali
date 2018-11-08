@@ -10,6 +10,7 @@ use App\Modulo;
 use App\Aula;
 use App\Test;
 use App\Gabarito;
+use App\Premio;
 use Auth;
 
 class AlunoController extends Controller
@@ -28,20 +29,6 @@ class AlunoController extends Controller
     public function meusCursos()
     {
         $aluno = Auth::user()->id;
-
-        //$cursos = Curso::with('users')->find($aluno)->first()->pivot;
-        //$cursos = Curso::with('users')->get()->find($aluno)->users->first()->pivot;
-        //$cursos = Curso::with('users')->first();
-        //$cursos = Curso::with('users')->get()->find($aluno)->first()->pivot;
-        /*$cursos = Curso::whereHas('users', function($r) use ($aluno)
-        {
-            $r->where('user_id', $aluno);
-        })->first();*/
-
-        //$cursos = Auth::user()->with('cursos')->get();
-
-        //$cursos = Curso::with('users')->where('user_id', $aluno)->first();
-        //dd($cursos);
 
         $aluno = Auth::user()->id;
 
@@ -98,27 +85,47 @@ class AlunoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showPremio($id)
+    {
+        $user = Auth::user()->id;
+
+        $progresso = Gabarito::where('user_id', $user)->where('curso_id', $id)->count();
+
+        $premios = Premio::with('cursos')->find($id)->get();
+
+        return view('alunos/premios/show', ['premios' => $premios, 'progresso' => $progresso]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function meusPremios()
     {
+
+        $aluno = Auth::user()->id;
+
         $aluno = Auth::user()->id;
 
         $cursos = Curso::whereHas('users', function($r) use ($aluno)
         {
             $r->where('user_id', $aluno);
         })->get();
-        //dd($cursos);
-
+        
         $total = 30;
 
-        $progresso = Gabarito::where('is_correct', true)->where('user_id', $aluno)->count();
+        $progresso = 0;
+        
         //dd($progresso);
 
-        if($progresso == $total)
-        {
-            $premios = 0;
-        }
+        //$cursos = $aluno->with('Cursos')->get();
+        //dd($cursos);
 
-        return view('premios/index', ['premios' => $premios]);
+        return view('alunos/premios/meuspremios', ['cursos' => $cursos, 'progresso' => $progresso, 'total' => $total]);
+
+        
     }
 
 }

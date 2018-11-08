@@ -14,6 +14,7 @@
                       <tr>
                         <th>#</th>
                         <th>Nome</th>
+                        <th>Pontuação</th>
                         <th>Data de Registro</th>
                         <th>Visualizar</th>
                       </tr>
@@ -23,11 +24,11 @@
 
                       <tr>
                         <td>{{$p->id}}</td>
-                        <td>{{$p->cursos->name}}</td>
+                        <td>{{$p->name}}</td>
+                        <td>{{$p->pontuacao}}</td>
                         <td>{{$p->created_at}}</td>
                         <td>
-                          <a class="btn btn-theme btn-xs" href="/premios/{{$p->id}}" 
-                          role="button"><i class="fa fa-eye"></i></a>                    
+                          <a class="btn btn-theme btn-xs" href="/uploads/premios/{{$p->file}}" role="button" download><i class="fa fa-eye"></i></a>                    
                         </td>
                       </tr>
                     @endforeach

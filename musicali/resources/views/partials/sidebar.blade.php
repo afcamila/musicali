@@ -46,18 +46,18 @@
                     </li>
 
                     <li class="mt">
-                        <a href="{{ url('/premios/  ') }}" class="{{ Request::is('premios*') ? 'active' : '' }}">
+                        <a href="{{ route('premiosalunos') }}" class="{{ Request::is('alunos/premios/*') ? 'active' : '' }}">
                             <i class="fa fa-star"></i>
                             <span>Prêmios</span>
                         </a>
                     </li>
 
-                    <li class="mt">
+                    <!--<li class="mt">
                         <a href="{{ url('/certificados/') }}" class="{{ Request::is('certificados*') ? 'active' : '' }}">
                             <i class="fa fa-star"></i>
                             <span>Certificados</span>
                         </a>
-                    </li>
+                    </li>-->
 
                 @endif
                   @if(Auth::user()->hasRole('administrador'))
@@ -116,7 +116,7 @@
                     </li>
 
                     <li class="sub-menu">
-                        <a href="{{ url('/tests/premios') }}" class="{{ Request::is('/tests/premios*') ? 'active' : '' }}">
+                        <a href="{{ url('/premios') }}" class="{{ Request::is('/premios*') ? 'active' : '' }}">
                             <i class="fa fa-star"></i>
                             <span>Prêmios</span>
                         </a>
@@ -243,7 +243,7 @@
                     </li>
 
                     <li class="sub-menu">
-                        <a href="{{ url('/tests/premios') }}" class="{{ Request::is('/tests/premios*') ? 'active' : '' }}">
+                        <a href="{{ url('/premios') }}" class="{{ Request::is('/premios*') ? 'active' : '' }}">
                             <i class="fa fa-star"></i>
                             <span>Prêmios</span>
                         </a>

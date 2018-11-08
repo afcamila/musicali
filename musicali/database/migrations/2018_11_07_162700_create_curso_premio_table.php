@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePremiosTable extends Migration
+class CreateCursoPremioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePremiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('premios', function (Blueprint $table) {
+        Schema::create('curso_premio', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('file')->default('default.pdf');
-            $table->integer('pontuacao');
+            $table->integer('premio_id')->unsigned();
+            $table->foreign('premio_id')->references('id')->on('premios');
+            $table->integer('curso_id')->unsigned(); 
+            $table->foreign('curso_id')->references('id')->on('cursos');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePremiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('premios');
+        Schema::dropIfExists('curso_premio');
     }
 }

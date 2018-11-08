@@ -4,8 +4,8 @@
 
         <div class="col-lg-9 main-chart ">
 
-        @if($test->isEmpty())
-            <div class="alert alert-warning"><b>Ops!</b> Ainda não há quiz cadastrado para este curso :(</div>
+        @if($cursos->isEmpty())
+            <div class="alert alert-warning"><b>Ops!</b> Você ainda não está estudando música :(</div>
             @endif
         	
 
@@ -21,7 +21,7 @@
 											<h3>{{ $curso->name }}</h3>
 										</div>
 										<div class="play">
-											<a class="btn btn-theme" href="/alunos/cursos/{{ $curso->id }}">Entrar <i class="fa fa-sign-in"></i></a>
+											<a class="btn btn-theme" href="/alunos/premios/{{ $curso->id }}">Ver Prêmios <i class="fa fa-sign-in"></i></a>
 										</div>
 									</div>
 								</div>
@@ -35,7 +35,21 @@
 			                                  <div class="col-sm-10">
 			                                      <p class="form-control-static">{{ $curso->name }}</p>
 			                                  </div>
-			                              </div>	                              	                     
+			                              </div>
+
+			                              <div class="form-group">
+			                                  <label class="col-sm-2 col-sm-2 control-label">Descrição</label>
+			                                  <div class="col-sm-10">
+			                                      <p class="form-control-static">{{ $curso->description }}</p>
+			                                  </div>
+			                              </div>
+
+			                              <div class="form-group">
+			                                  <label class="col-sm-2 col-sm-2 control-label">Inscrito</label>
+			                                  <div class="col-sm-10">
+			                                      <p class="form-control-static">{{ $curso->created_at }}</p>
+			                                  </div>
+			                              </div>                 
 			                              
 			                          </form>
 								</div>

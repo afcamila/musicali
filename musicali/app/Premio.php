@@ -12,7 +12,6 @@ class Premio extends Model
 
     public function cursos()
     {
-      return $this->belongsTo(Curso::class, 'curso_id');
+      return $this->belongsToMany(Curso::class, 'curso_premio')->withPivot('premio_id', 'curso_id')->withTimestamps();
     }
-
 }

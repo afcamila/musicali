@@ -19,7 +19,8 @@
 
                   <div class="form-panel">
                       <h4 class="mb"><i class="fa fa-angle-right"></i>Novo Módulo</h4>
-                      <form class="form-horizontal style-form" action="/cursos/{{ $curso->id }}" method="post">
+                      <form class="form-horizontal style-form" action="/cursos/{{ $curso->id }}" method="post" enctype="multipart/form-data">
+
                          {{csrf_field()}}
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nome</label>
@@ -44,6 +45,14 @@
                                 <option value="DIFÍCIL">DIFÍCIL</option>
                               </select>
                             </div>
+                          </div>
+
+
+                          <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Apostila
+                                <div class="col-sm-10">
+                                  <input type="file" class="btn btn-theme02" id="download" name="download"> 
+                                </div> 
                           </div>
 
                           <div class="form-group">

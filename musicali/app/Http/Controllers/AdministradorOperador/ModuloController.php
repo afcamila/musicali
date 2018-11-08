@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Modulo;
 use App\Curso;
 use App\Aula;
+use File;
 
 class ModuloController extends Controller
 {
@@ -51,20 +52,37 @@ class ModuloController extends Controller
         request()->validate([
             'name' => 'required|min:2|max:50',          
             'description' => 'required|min:6',
-            'level' => 'required',                
+            'level' => 'required', 
+            'download' => 'required'               
         ], [
             'name.required' => 'Digite o nome do módulo.',
             'name.min' => 'O nome precisa ter no mínimo 2 caracteres.',
             'name.max' => 'O nome está grande demais.',
             'description.required' => 'Descreva o módulo.',
-            'level.required' => 'Selecione o nível do módulo.'
+            'level.required' => 'Selecione o nível do módulo.',
+            'download' => 'Insira a apostila.'
         ]);
+            
+        $modulo = new Modulo();
+
+        $modulo->name = $request->name;
+        $modulo->description = $request->description;
+        $modulo->level = $request->level;
+        $modulo->status = $request->status;
+
+        if ($request->hasFile('download'))
+        {
+
+            $file = $request->file('download');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path() . '/uploads/apostilas/';
+            $file->move($destinationPath, $filename);
+            $modulo->download = $filename;
+        }
+        else
+            $modulo->download = '';
 
 
-        //dd($request->all());
-        //$role_curso = Curso::where('id', $id)->first();
-        $modulo = Modulo::create($request->all());
-        //dd($modulo);
         $modulo->save();
         $modulo->cursos()->attach($id);
         return redirect()->route('cursosmodulos', ['id' => $id]);

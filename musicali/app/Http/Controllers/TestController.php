@@ -64,7 +64,7 @@ class TestController extends Controller
             $r->where('test_id', $test);
         })->take(1)->get();
 
-        //dd($questions);
+        //dd($test);
 
 
         return view('quiz/show', ['test' => $test, 'questions' => $questions, 'curso' => $curso, 'progresso' => $progresso, 'total' => $total]);

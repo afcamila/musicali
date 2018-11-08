@@ -18,8 +18,8 @@
             
 
                   <div class="form-panel">
-                      <h4 class="mb"><i class="fa fa-angle-right"></i>Nova Aula</h4>
-                      <form class="form-horizontal style-form" action="/cursos/modulos/{{ $modulo->id }}" method="post" enctype="multipart/form-data">
+                      <h4 class="mb"><i class="fa fa-angle-right"></i>Novo Prêmio</h4>
+                      <form class="form-horizontal style-form" action="/premios" method="post"  enctype="multipart/form-data">
                          {{csrf_field()}}
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nome</label>
@@ -27,34 +27,37 @@
                                   <input type="text" class="form-control" id="name" name="name">
                               </div>
                           </div>
-                          
+
                           <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Descrição</label>
+                            <label class="col-sm-2 col-sm-2 control-label">Curso</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="description" name="description">
+                              <select name="curso_id">
+                                @foreach ($cursos as $c)
+                                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                @endforeach
+                              </select>
                             </div>
                           </div>
 
                           <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">URL do vídeo</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="video" name="video">
-                            </div>
-                          </div>
-
-
-                          <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">Apostila
+                                <label class="col-sm-2 col-sm-2 control-label">Download
                                 <div class="col-sm-10">
-                                  <input type="file" class="btn btn-theme02" id="download" name="download"> 
+                                  <input type="file" class="btn btn-theme02" id="file" name="file"> 
                                 </div> 
                           </div>
-                          
 
                           <div class="form-group">
-                            <!--<label class="col-sm-2 col-sm-2 control-label">Status</label>-->
+                            <label class="col-sm-2 col-sm-2 control-label">Pontuação</label>
                             <div class="col-sm-10">
-                              <input type="hidden" class="form-control" id="status" name="status" value="ATIVO">
+                              <select class="form-control" name="pontuacao" id="pontuacao">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                
+                              </select>
                             </div>
                           </div>
                           

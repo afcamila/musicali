@@ -19,7 +19,7 @@ class CreateAulasTable extends Migration
             $table->string('description');
             $table->string('status');
             $table->string('video');
-            //$table->string('pdf');
+            $table->string('download')->default('default.pdf');
             $table->timestamps();
         });
     }

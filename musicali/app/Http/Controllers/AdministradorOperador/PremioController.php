@@ -48,15 +48,27 @@ class PremioController extends Controller
     {
         $premio = new Premio();
 
+        $premio->name = $request->name;
+        $premio->pontuacao = $request->pontuacao;
+        $curso_id = $request->curso_id;
+
+
+        if ($request->hasFile('file'))
+        {
+
             $file = $request->file('file');
-            $filename = $request->name;
-            $file->save(public_path('/uploads/premios/' . $filename ) );
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path() . '/uploads/premios/';
+            $file->move($destinationPath, $filename);
             $premio->file = $filename;
-            $premio->name = $filename;
-            $premio->curso_id = $request->curso_id;
-            $premio->pontuacao = $request->pontuacao;
-            //dd($premio);
-            $premio->save();          
+        }
+        else
+            $premio->download = '';
+
+
+        $premio->save(); 
+
+        $premio->cursos()->attach($curso_id);         
         
 
         return redirect('/premios');

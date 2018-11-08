@@ -48,6 +48,15 @@
                               </div>
 
                               <div class="form-group">
+                                  <label class="col-sm-2 col-sm-2 control-label">Apostila</label>
+                                  <div class="col-sm-10">
+                                      <a href="/uploads/apostilas/{{ $modulo->download }}" download>
+                                          <button class="btn btn-theme">Download</button>
+                                      </a>
+                                  </div>
+                              </div>  
+
+                              <div class="form-group">
                                   <label class="col-sm-2 col-sm-2 control-label">Nível</label>
                                   <div class="col-sm-10">
                                           @if ($modulo->level === 'FÁCIL')
